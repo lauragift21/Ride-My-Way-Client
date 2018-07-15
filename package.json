@@ -1,0 +1,28 @@
+{
+  "name": "rmy-client",
+  "version": "1.0.0",
+  "description": "Ride-My-Way is a carpooling application that provides drivers with the ability to create ride offers and passengers to join available ride offers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauragift21/Ride-My-Way-Client.git"
+  },
+  "keywords": [
+    "javascipt",
+    "carpooling"
+  ],
+  "author": "Egwuenu Gift",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lauragift21/Ride-My-Way-Client/issues"
+  },
+  "homepage": "https://github.com/lauragift21/Ride-My-Way-Client#readme",
+  "dependencies": {
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0"
+  }
+}
