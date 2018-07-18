@@ -48,23 +48,30 @@
             Create your account to join Ride My Way
           </div>
           <div class="form">
-            <form class="form" action="./rides.html">
+            <form id="form" action="">
+              <div class="serverError"></div>
               <div class="form-group">
-                <input type="text" class="text-input" name="first" placeholder="First Name*" required>
-                <input type="text" class="text-input" name="last" placeholder="Last Name*" required>
+                <input type="text" class="text-email" name="first" id="first" placeholder="First Name*">
+                <p class="error" id=firstError></p>
+                <input type="text" class="text-email" name="last" id="last" placeholder="Last Name*">
+                <p class="error" id=lastError></p>
               </div>
               <div class="form-group">
-                <input type="email" class="text-email" name="email" placeholder="Email*" required>
+                <input type="email" class="text-email" name="email" id="email" placeholder="Email*">
+                <p class="error" id=emailError></p>
               </div>
               <div class="form-group">
-                <input type="text" class="text-email" name="location" placeholder="location*" required>
+                <input type="text" class="text-email" name="location" id="location" placeholder="location*">
+                <p class="error" id=locationError></p>
               </div>
               <div class="form-group">
-                <input type="password" class="text-input" name="password" placeholder="Password*" required>
-                <input type="password" class="text-input" name="password" placeholder="Confirm Password*" required>
+                <input type="password" class="text-email" name="password" id="password" placeholder="Password*">
+                <p class="error" id=passwordError></p>
+                <input type="password" class="text-email" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password*">
+                <p class="error" id=passwordConfirmError></p>
               </div>
               <div class="form-group button">
-                <button type="submit" class="btn">SIGN UP</button>
+                <button type="submit" class="btn" id="submit">SIGN UP</button>
                 <b class="btn-text">
                   Already a member?
                   <a href="./signin.html">Sign in instead</a>
@@ -82,5 +89,5 @@
     </div>
   </footer>
 </body>
-
+<script src="./assets//js/signup.js"></script>
 </html>

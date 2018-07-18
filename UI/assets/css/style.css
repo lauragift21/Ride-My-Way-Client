@@ -177,11 +177,10 @@ header .brand-center {
   font-size: 30px;
   text-align: center;
 }
-.form {
-  text-align: center;
-}
+
 .form-group {
   padding: 20px;
+  margin-left: 40px;
 }
 .text-input {
   background: #ffffff;
@@ -193,6 +192,7 @@ header .brand-center {
 }
 .text-email {
   width: 31em;
+  margin-bottom: 3px;
   padding: 0.4rem;
   outline-color: #054752;
   height: 2.3rem;
@@ -208,6 +208,13 @@ header .brand-center {
 .btn:hover {
   background: #054752;
   box-shadow: none;
+}
+
+.error {
+  color: #cc0033;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
 }
 
 /* footer */
