@@ -8,7 +8,7 @@ const password = document.getElementById('password');
 //  select all error tags
 const emailError = document.getElementById('emailError');
 const passwordError = document.getElementById('passwordError');
-const serverError = document.getElementsByClassName('serverError');
+const serverError = document.getElementById('serverError');
 
 // validate data sent in form
 const checkValidation = () => {
@@ -42,18 +42,18 @@ const login = () => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log(data);
-      data.status === 'success';
-      localStorage.setItem('token:', data.token);
-      // window.location.href = '.../rides.html';
-      // alert('user login successful');
+      data.success === 'true';
+      localStorage.setItem('token', data.token);
+      window.location.href = 'rides.html';
     })
     .catch(err => {
-      console.log(err);
+      serverError.innerHTML = data.message;
+      serverError.setAttribute('style', 'text-align:center; color: red; font-size: 23px;');
+      console.log(err.message);
     });
 };
 
-submit.onclick = e => {
+submit.onclick = (e) => {
   event.preventDefault();
   checkValidation();
   login();

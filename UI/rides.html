@@ -26,7 +26,7 @@
             <a href="./profile.html">Profile</a>
           </li>
           <li>
-            <a href="./index.html">Logout</a>
+            <a href="./index.html" id="logout">Logout</a>
           </li>
         </ul>
       </nav>
@@ -41,7 +41,7 @@
             <a href="#" class="menu-icon"></a>
             <ul>
               <li>
-                <input type="search" name="search" placeholder="search rides.."  class="search-ride">
+                <input type="search" name="search" id="search=""" placeholder="search rides.."  class="search-ride">
               </li>
               <li>
                 <a href="./Myrides.html">My Rides</a>
@@ -56,67 +56,9 @@
           </nav>
         </div>
         <div class="card-content">
-          <div class="rides-list">
-            <table class="table">
-              <tr class="row">
-                <th>Name</th>
-                <th>Location</th>
-                <th>Destination</th>
-                <th>Departure time</th>
-                <th>Seat Available</th>
-                <th>Request Ride</th>
-              </tr>
-              <tr class="row">
-                <td>Ade Bamiro</td>
-                <td> Yaba Left </td>
-                <td> Agege </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <button class="ride-success">Request</button>
-                </td>
-              </tr>
-              <tr class="row">
-                <td>Ade Bamiro</td>
-                <td> Oshodi Island </td>
-                <td> Victoria Island </td>
-                <td> 3-07-2018 4PM</td>
-                <td>2</td>
-                <td>
-                  <button class="ride-success">Request</button>
-                </td>
-              </tr>
-              <tr class="row">
-                <td>Ade Bamiro</td>
-                <td> Ikeja </td>
-                <td> Ajah </td>
-                <td> 3-07-2018 4PM</td>
-                <td>1</td>
-                <td>
-                  <button class="ride-success">Request</button>
-                </td>
-              </tr>
-              <tr class="row">
-                <td>Ade Bamiro</td>
-                <td> Ikorodu  </td>
-                <td> Ilesha  </td>
-                <td> 3-07-2018 4PM</td>
-                <td>4</td>
-                <td>
-                  <button class="ride-success">Request</button>
-                </td>
-              </tr>
-              <tr class="row">
-                <td>Ade Bamiro</td>
-                <td> Zaria </td>
-                <td> Jos </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <button class="ride-success">Request</button>
-                </td>
-              </tr>
-            </table>
+          <div class="rides-list" id="allRides">
+            <div class="alert"></div>
+
           </div>
         </div>
       </div>
@@ -128,4 +70,7 @@
     </div>
   </footer>
 </body>
+<script src="js/jwt-decode.min.js"></script>
+<script src="./assets/js/getride.js"></script>
+<script src="./assets/js/logout.js"></script>
 </html>

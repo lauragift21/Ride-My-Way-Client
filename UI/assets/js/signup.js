@@ -57,7 +57,6 @@ const signup = () => {
     location: locate.value,
     password: password.value
   };
-  console.log(data);
 
   fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc,
@@ -68,15 +67,16 @@ const signup = () => {
   })
     .then(res => res.json())
     .then(data => {
-      data.status === 'success';
-      localStorage.setItem('token:', data.token);
+      data.success === 'true';
+      window.localStorage.setItem('token', data.token);
+      window.location.href = 'rides.html';
     })
     .catch(err => {
       console.log(err);
     });
 };
 
-submit.onclick = e => {
+submit.onclick = (e) => {
   event.preventDefault();
   checkValidation();
   checkPassword();

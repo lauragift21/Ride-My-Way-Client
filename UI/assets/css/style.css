@@ -181,6 +181,7 @@ header .brand-center {
 .form-group {
   padding: 20px;
   margin-left: 40px;
+  text-align: center;
 }
 .text-input {
   background: #ffffff;
@@ -209,7 +210,6 @@ header .brand-center {
   background: #054752;
   box-shadow: none;
 }
-
 .error {
   color: #cc0033;
   font-size: 12px;
