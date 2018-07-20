@@ -55,13 +55,19 @@
             </ul>
           </nav>
         </div>
-        <div class="card-content">
-          <div class="rides-list" id="allRides">
-            <div class="alert"></div>
-
-          </div>
+        <div class="rides-list">
+          <table>
+              <tr class="row">
+                  <th>Location</th>
+                  <th>Destination</th>
+                  <th>Departure time</th>
+                  <th>Seat Available</th>
+                  <th>Request Ride</th>
+              </tr>
+              <table id="allRides"></table>
+          </table>
         </div>
-      </div>
+        </div>
     </div>
   </section>
   <footer class="copyright">
@@ -71,6 +77,7 @@
   </footer>
 </body>
 <script src="js/jwt-decode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="./assets/js/getride.js"></script>
 <script src="./assets/js/logout.js"></script>
 </html>

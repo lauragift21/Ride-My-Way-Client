@@ -22,6 +22,10 @@ const checkValidation = () => {
   }
 };
 
+const removeErrorMsg = (input, inputError) => {
+  inputError.setAttribute('style', 'display: none;');
+  input.setAttribute('style', 'border: 1px solid #dddddd;');
+};
 
 const login = () => {
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/auth/login';
@@ -35,9 +39,12 @@ const login = () => {
 
   fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc,
+    mode: 'cors',
     body: JSON.stringify(data),
     headers: {
-      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      'Accept': 'application/json; charset utf-8',
+      'Content-Type': 'application/json',
     }
   })
     .then(res => res.json())
@@ -56,5 +63,16 @@ const login = () => {
 submit.onclick = (e) => {
   event.preventDefault();
   checkValidation();
-  login();
+  if (email.value && password.value) {
+    login();
+  }
+};
+
+// delete error messages
+email.onkeydown = () => {
+  removeErrorMsg(email, emailError);
+};
+
+password.onkeydown = () => {
+  removeErrorMsg(password, passwordError);
 };

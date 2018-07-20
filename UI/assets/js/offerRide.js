@@ -53,7 +53,7 @@ const createRide = () => {
   };
 
   fetch(url, {
-    method: 'POST', //*, GET, POST, PUT, DELETE, etc,
+    method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
@@ -73,10 +73,10 @@ const createRide = () => {
     })
 }
 
-const clearError = (input, inputError) => {
-  nameError.setAttribute('style', 'display: none');
-  name.setAttribute('style', 'border: 1px solid #ddd;');
-}
+const removeErrorMsg = (input, inputError) => {
+  inputError.setAttribute('style', 'display: none;');
+  input.setAttribute('style', 'border: 1px solid #dddddd;');
+};
 
 name.onKeyDown = () => {
   clearError(name, nameError);
@@ -90,4 +90,22 @@ submit.onclick = (e) => {
   event.preventDefault();
   checkValidation();
   createRide();
+};
+
+
+// delete error messages
+locate.onkeydown = () => {
+  removeErrorMsg(locate, locationError);
+};
+
+destination.onkeydown = () => {
+  removeErrorMsg(destination, destinationError);
+};
+
+departure.onkeydown = () => {
+  removeErrorMsg(departure, departureError);
+};
+
+seats.onkeydown = () => {
+  removeErrorMsg(seats, seatsError);
 };

@@ -46,6 +46,11 @@ const checkPassword = () => {
   }
 };
 
+const removeErrorMsg = (input, inputError) => {
+  inputError.setAttribute('style', 'display: none;');
+  input.setAttribute('style', 'border: 1px solid #dddddd;');
+};
+
 const signup = () => {
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/auth/signup';
 
@@ -60,9 +65,12 @@ const signup = () => {
 
   fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc,
+    mode: 'cors',
     body: JSON.stringify(data),
     headers: {
-      "Content-Type": "application/json",
+      'Access-Control-Allow-Origin': '*',
+      'Accept': 'application/json; charset utf-8',
+      'Content-Type': 'application/json',
     }
   })
     .then(res => res.json())
@@ -81,4 +89,25 @@ submit.onclick = (e) => {
   checkValidation();
   checkPassword();
   signup();
+};
+
+// delete error messages
+firstName.onkeydown = () => {
+  removeErrorMsg(firstName, firstError);
+};
+
+lastName.onkeydown = () => {
+  removeErrorMsg(lastName, lastError);
+};
+
+locate.onkeydown = () => {
+  removeErrorMsg(locate, locationError);
+};
+
+email.onkeydown = () => {
+  removeErrorMsg(email, emailError);
+};
+
+password.onkeydown = () => {
+  removeErrorMsg(password, passwordError);
 };
