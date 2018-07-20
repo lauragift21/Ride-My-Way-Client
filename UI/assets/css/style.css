@@ -392,11 +392,15 @@ header .brand-center {
   .tab {
     display: none;
   }
+  .form {
+    margin: 0;
+  }
   .form-header {
     font-size: 18px;
   }
   .form-group {
-    padding: 10px;
+    padding: 6px;
+    margin: 0;
   }
   .text-input {
     width: 12em;
@@ -470,3 +474,12 @@ header .brand-center {
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .form-group {
+    padding: 10px;
+    margin: 0;
+  }
+  .text-email {
+    width: 20em;
+  }
+}
