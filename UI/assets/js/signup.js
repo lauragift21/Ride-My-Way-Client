@@ -65,11 +65,8 @@ const signup = () => {
 
   fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc,
-    mode: 'cors',
     body: JSON.stringify(data),
     headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Accept': 'application/json; charset utf-8',
       'Content-Type': 'application/json',
     }
   })
@@ -80,7 +77,9 @@ const signup = () => {
       window.location.href = 'rides.html';
     })
     .catch(err => {
-      console.log(err);
+      serverError.innerHTML = err.message;
+      serverError.setAttribute('style', 'text-align:center; background-color: #f44336;color: white; margin-bottom: 15px;');
+      console.log(err.message);
     });
 };
 

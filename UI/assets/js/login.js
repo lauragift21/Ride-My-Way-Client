@@ -38,26 +38,18 @@ const login = () => {
   console.log(data);
 
   fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc,
-    mode: 'cors',
+    method: 'POST',
     body: JSON.stringify(data),
     headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Accept': 'application/json; charset utf-8',
       'Content-Type': 'application/json',
     }
   })
     .then(res => res.json())
     .then(data => {
-      data.success === 'true';
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
       window.location.href = 'rides.html';
     })
-    .catch(err => {
-      serverError.innerHTML = data.message;
-      serverError.setAttribute('style', 'text-align:center; color: red; font-size: 23px;');
-      console.log(err.message);
-    });
 };
 
 submit.onclick = (e) => {
