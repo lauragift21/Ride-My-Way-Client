@@ -1,9 +1,10 @@
 const search = document.getElementById('search');
-const alertMsg = document.querySelector('#alertError');
-const row = document.getElementsByClassName('row');
 const allRides = document.getElementById('rides');
-const specificRide = document.getElementById('details');
+const modalTable = document.querySelector('#details');
+const modal = document.querySelector('.modal');
+const span = document.querySelector('.close');
 
+// Get all rides
 const getAllRides = () => {
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/rides';
 
@@ -36,10 +37,8 @@ const getAllRides = () => {
               <td> ${moment(ride.departure).format('MMM Do YY')}</td>
               <td> ${ride.seats}</td>
               <td>
-                <a href="ride-details.html?${ride.id}">
-                  <button class="ride-success detail" onclick="getSpecificRide(${ride.id})">Ride Details</button>
-                </a>
-                </td>
+                <button class="button" onclick="getSpecificRide(${ride.id})">View Details</button>
+              </td>
                 </tr>
             </table>
             `;
@@ -47,19 +46,29 @@ const getAllRides = () => {
           })
       }
     });
-  };
-window.onload = getAllRides('#ride');
-
+};
+window.onload = getAllRides('#rides');
 
 // Get details of one ride
 const getSpecificRide = (rideId) => {
   let rideDetails = '';
-  const url = `https://ride-my-way-server.herokuapp.com/api/v1/rides/${rideId}`;
   const token = localStorage.getItem('token');
   if (!token) {
     window.location.href = 'index.html';
   }
 
+  modal.style.display = 'block';
+  modalTable.innerHTML = '';
+  span.onclick = () => {
+    modal.style.display = "none";
+  }
+    // When the user clicks anywhere outside of the modal, close it
+  window.onclick = (e) =>  {
+    if (e.target == modal) {
+        modal.style.display = "none";
+    }
+  }
+  const url = `https://ride-my-way-server.herokuapp.com/api/v1/rides/${rideId}`;
   fetch(url, {
     method: 'GET',
     mode: 'cors',
@@ -72,37 +81,54 @@ const getSpecificRide = (rideId) => {
     .then(res => res.json())
     .then(data => {
       console.log(data);
-      if (data.ride > 1) {
+      if (data.success) {
+        const ride = data.ride[0];
         rideDetails = `
-        <div class="trip">
-        <h1>Ride Information</h1>
         <table>
           <tr>
             <td>Location:</td>
-            <td>${data}</td>
+            <td>${ride.location}</td>
           </tr>
           <tr>
             <td>Destination: </td>
-            <td>${data.destination}</td>
+            <td>${ride.destination}</td>
           </tr>
           <tr>
             <td> Departure: </td>
-            <td>${data.departure}</td>
+            <td> ${moment(ride.departure).format('MMM Do YY')}</td>
           </tr>
           <tr>
             <td> Seats: </td>
-            <td>${data.seats}</td>
+            <td>${ride.seats}</td>
           </tr>
         </table>
-        <a href="#">
-          <button class="trip-btn">Request Ride</button>
-        </a>
-      </div>
+          <button class="trip-btn modal-btn" onclick="requestRide(${rideId})">Request Ride</button>
         `;
-        specificRide.innerHTML = rideDetails;
+        modalTable.innerHTML = rideDetails;
   }
     });
-  };
+};
 
-window.onload = getSpecificRide('#ride-details');
-
+//  Join a ride
+const requestRide = (rideId) => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = 'index.html';
+  }
+  const url = `https://ride-my-way-server.herokuapp.com/api/v1/rides/${rideId}/requests`;
+  fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${token}`,
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        console.log(data.message);
+      }
+    });
+}
