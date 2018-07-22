@@ -33,7 +33,7 @@ const getAllRides = () => {
         return rideOffer.map((ride) => {
           let rideDetails = '';
           rideDetails += `
-          <table>
+          <table class="ride-table">
             <tr class="row">
               <td> ${ride.location}</td>
               <td> ${ride.destination}</td>
@@ -87,7 +87,7 @@ const getSpecificRide = (rideId) => {
       if (data.success) {
         const ride = data.ride[0];
         rideDetails = `
-        <table>
+        <table class="ride-table">
           <tr>
             <td>Location:</td>
             <td>${ride.location}</td>
