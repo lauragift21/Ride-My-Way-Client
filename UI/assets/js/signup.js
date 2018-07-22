@@ -1,6 +1,6 @@
 // select all input fields
-const form = document.getElementById('form');
 const submit = document.getElementById('submit');
+const errMessage = document.getElementById('serverErr');
 
 const firstName = document.getElementById('first');
 const lastName = document.getElementById('last');
@@ -16,7 +16,6 @@ const emailError = document.getElementById('emailError');
 const locationError = document.getElementById('locationError');
 const passwordError = document.getElementById('passwordError');
 const passwordConfirmError = document.getElementById('passwordConfirmError');
-const serverError = document.getElementsByClassName('serverError');
 
 // validate data sent in form
 const checkValidation = () => {
@@ -55,37 +54,38 @@ const signup = () => {
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/auth/signup';
 
   // insert values into req body
-  const data = {
+  const body = {
     firstname: firstName.value,
     lastname: lastName.value,
     email: email.value,
     location: locate.value,
-    password: password.value
+    password: password.value,
   };
 
   fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc,
-    mode: 'cors',
-    body: JSON.stringify(data),
+    method: 'POST',
+    body: JSON.stringify(body),
     headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Accept': 'application/json; charset utf-8',
       'Content-Type': 'application/json',
-    }
+    },
   })
     .then(res => res.json())
-    .then(data => {
-      data.success === 'true';
-      window.localStorage.setItem('token', data.token);
-      window.location.href = 'rides.html';
+    .then((data) => {
+      if (data.success) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.location.href = 'rides.html';
+      }
     })
-    .catch(err => {
-      console.log(err);
+    .catch((err) => {
+      errMessage.innerHTML = err.message;
+      errMessage.setAttribute('style', 'display: block');
+      console.log(err.message);
     });
 };
 
 submit.onclick = (e) => {
-  event.preventDefault();
+  e.preventDefault();
   checkValidation();
   checkPassword();
   signup();
