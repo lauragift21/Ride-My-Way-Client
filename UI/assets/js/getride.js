@@ -1,8 +1,10 @@
-const search = document.getElementById('search');
 const allRides = document.getElementById('rides');
 const modalTable = document.querySelector('#details');
 const modal = document.querySelector('.modal');
 const span = document.querySelector('.close');
+const spinner = document.querySelector('#spinner');
+const alertMsg = document.getElementById('alert');
+const errMessage = document.querySelector('#errMessage');
 
 // Get all rides
 const getAllRides = () => {
@@ -17,12 +19,13 @@ const getAllRides = () => {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${token}`,
-    }
+      authorization: `Bearer ${token}`,
+    },
   })
-  .then(res => res.json())
-  .then((data) => {
-    if (data.rides.length < 1) {
+    .then(res => res.json())
+    .then((data) => {
+      spinner.style.display = 'none';
+      if (data.rides.length < 1) {
         alertMsg.innerHTML = 'No Ride available at the moment.';
       }
       else {
@@ -42,8 +45,8 @@ const getAllRides = () => {
                 </tr>
             </table>
             `;
-            allRides.innerHTML += rideDetails;
-          })
+          allRides.innerHTML += rideDetails;
+        });
       }
     });
 };
@@ -58,16 +61,17 @@ const getSpecificRide = (rideId) => {
   }
 
   modal.style.display = 'block';
+  errMessage.style.display = 'none';
   modalTable.innerHTML = '';
   span.onclick = () => {
-    modal.style.display = "none";
-  }
-    // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (e) =>  {
-    if (e.target == modal) {
-        modal.style.display = "none";
+    modal.style.display = 'none';
+  };
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
     }
-  }
+  };
   const url = `https://ride-my-way-server.herokuapp.com/api/v1/rides/${rideId}`;
   fetch(url, {
     method: 'GET',
@@ -75,12 +79,11 @@ const getSpecificRide = (rideId) => {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${token}`,
-    }
+      authorization: `Bearer ${token}`,
+    },
   })
     .then(res => res.json())
-    .then(data => {
-      console.log(data);
+    .then((data) => {
       if (data.success) {
         const ride = data.ride[0];
         rideDetails = `
@@ -105,7 +108,7 @@ const getSpecificRide = (rideId) => {
           <button class="trip-btn modal-btn" onclick="requestRide(${rideId})">Request Ride</button>
         `;
         modalTable.innerHTML = rideDetails;
-  }
+      }
     });
 };
 
@@ -122,13 +125,22 @@ const requestRide = (rideId) => {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${token}`,
-    }
+      authorization: `Bearer ${token}`,
+    },
   })
     .then(res => res.json())
-    .then(data => {
+    .then((data) => {
+      console.log(data);
       if (data.success) {
-        console.log(data.message);
+        errMessage.setAttribute('style', 'display: none;');
+        swal({
+          title: 'Hurray!',
+          text: data.message,
+          icon: 'success',
+        });
+      } else {
+        errMessage.setAttribute('style', 'display: block; margin: 5px;');
+        errMessage.innerHTML = '<i class="fa fa-times"></i> You cannot request for a ride you created';
       }
     });
-}
+};

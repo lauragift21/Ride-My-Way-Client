@@ -8,7 +8,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Ride-My-Way | Home</title>
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/loader.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon.ico">
 </head>
@@ -59,70 +61,30 @@
         </div>
         <div class="card-content">
           <div class="rides-list">
-            <table class="table">
+            <div class="error" id="alert"></div>
+            <table id="rides">
               <tr class="row">
                 <th>Location</th>
                 <th>Destination</th>
                 <th>Departure time</th>
-                <th>Seats</th>
-                <th></th>
-              </tr>
-              <tr class="row">
-                <td> Yaba Left </td>
-                <td> Agege </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <a href="./ridelist.html">
-                    <button class="ride-success">Ride Details</button>
-                  </a>
-                </td>
-              </tr>
-              <tr class="row">
-                <td> Oshodi Island </td>
-                <td> Victoria Island </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <a href="./ridelist.html">
-                    <button class="ride-success">Ride Details</button>
-                  </a>
-                </td>
-              </tr>
-              <tr class="row">
-                <td> Ikeja </td>
-                <td> Ajah </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <a href="./ridelist.html">
-                    <button class="ride-success">Ride Details</button>
-                  </a>
-                </td>
-              </tr>
-              <tr class="row">
-                <td> Ikorodu </td>
-                <td> Ilesha </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <a href="./ridelist.html">
-                    <button class="ride-success">Ride Details</button>
-                  </a>
-                </td>
-              </tr>
-              <tr class="row">
-                <td> Zaria </td>
-                <td> Jos </td>
-                <td> 3-07-2018 4PM</td>
-                <td>3</td>
-                <td>
-                  <a href="./ridelist.html">
-                    <button class="ride-success">Ride Details</button>
-                  </a>
-                </td>
+                <th>Seat Available</th>
+                <th>Request Ride</th>
               </tr>
             </table>
+            <div id="errMessage"></div>
+            <div class="lds-ring" id="spinner"><div></div><div></div><div></div><div></div></div>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close" id="close">&times;</span>
+                    <div class="modal-title">
+                      <h1 class="text-center" style="color: #333;">Ride Details</h1>
+                    </div>
+                    <div id="errMessage"></div>
+                    <div class="modal-table" id="details"></div>
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -134,6 +96,9 @@
     </div>
   </footer>
 </body>
-<script src="./assets/js/"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="./assets/js/jwt-decode.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="./assets/js/rideRequests.js"></script>
 <script src="./assets/js/logout.js"></script>
 </html>

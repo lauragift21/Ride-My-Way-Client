@@ -15,10 +15,6 @@ const departureError = document.getElementById('departureError');
 const seatsError = document.getElementById('seatsError');
 
 const checkValidation = () => {
-  if (!name.value) {
-    nameError.innerHTML = 'Name is required';
-    name.setAttribute('style', 'border: 1px solid #cc0033;');
-  }
   if (!locate.value) {
     locationError.innerHTML = 'Location is required';
     locate.setAttribute('style', 'border: 1px solid #cc0033;');
@@ -45,7 +41,7 @@ const createRide = () => {
   }
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/users/rides';
 
-  const data = {
+  const body = {
     location: locate.value,
     destination: destination.value,
     departure: departure.value,
@@ -54,40 +50,34 @@ const createRide = () => {
 
   fetch(url, {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${token}`,
-    }
+      authorization: `Bearer ${token}`,
+    },
   })
     .then(res => res.json())
-    .then(data => {
-        data.success === 'true';
+    .then((data) => {
+      console.log(data);
+      if (data.success) {
         swal({
-          title: 'Whoop!! Whoop!!',
           text: data.message,
+          icon: 'success',
           closeModal: true,
-        })
+        });
+      }
     }).catch((err) => {
       console.log(err);
-    })
-}
+    });
+};
 
 const removeErrorMsg = (input, inputError) => {
   inputError.setAttribute('style', 'display: none;');
   input.setAttribute('style', 'border: 1px solid #dddddd;');
 };
 
-name.onKeyDown = () => {
-  clearError(name, nameError);
-}
-
-locate.onKeyDown = () => {
-  clearError(name, nameError);
-}
-
 submit.onclick = (e) => {
-  event.preventDefault();
+  e.preventDefault();
   checkValidation();
   createRide();
 };

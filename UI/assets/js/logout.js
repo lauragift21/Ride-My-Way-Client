@@ -4,5 +4,6 @@ const token = localStorage.getItem('token');
 if (token) {
   logout.onclick = () => {
     localStorage.removeItem('token');
-  }
+    localStorage.removeItem('user');
+  };
 }

@@ -373,6 +373,22 @@ header .brand-center {
   border-radius: 10px;
   text-align: center;
 }
+#errMessage {
+  text-align: center;
+  color: #dc143c;
+  padding: 6px; 
+  border: 1px thin #f2f2f2;
+  border-radius: 4px;
+  background: #f2dede;
+}
+
+.req-btn {
+  display: inline-block;
+  position: relative;
+  left: 14rem;
+  top: 10px;
+}
+
 /* media queries mobile*/
 @media only screen and (max-width: 640px) {
   header {
@@ -528,5 +544,11 @@ header .brand-center {
     position: relative;
     left: 6em;
     top: 15px;
+  }
+  .req-btn {
+    display: inline-block;
+    position: relative;
+    left: 4rem;
+    top: 10px;
   }
 }

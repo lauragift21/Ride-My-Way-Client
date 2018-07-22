@@ -1,14 +1,10 @@
 // select all input fields
-const form = document.getElementById('form');
 const submit = document.getElementById('submit');
-
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-
 //  select all error tags
 const emailError = document.getElementById('emailError');
 const passwordError = document.getElementById('passwordError');
-const serverError = document.getElementById('serverError');
 
 // validate data sent in form
 const checkValidation = () => {
@@ -31,29 +27,30 @@ const login = () => {
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/auth/login';
 
   // insert values into req body
-  const data = {
+  const body = {
     email: email.value,
-    password: password.value
+    password: password.value,
   };
-  console.log(data);
 
   fetch(url, {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
   })
     .then(res => res.json())
-    .then(data => {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      window.location.href = 'rides.html';
-    })
+    .then((data) => {
+      if (data.success) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.location.href = 'rides.html';
+      }
+    });
 };
 
 submit.onclick = (e) => {
-  event.preventDefault();
+  e.preventDefault();
   checkValidation();
   if (email.value && password.value) {
     login();
