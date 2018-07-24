@@ -218,7 +218,7 @@ header .brand-center {
 }
 
 .form-group {
-  padding: 20px;
+  padding: 12px;
   margin-left: 40px;
   text-align: center;
 }
@@ -253,7 +253,7 @@ header .brand-center {
   color: #cc0033;
   font-size: 12px;
   line-height: 15px;
-  margin: 5px 0 0;
+  margin:  0 0;
 }
 
 /* footer */
@@ -373,6 +373,21 @@ header .brand-center {
   border-radius: 10px;
   text-align: center;
 }
+.user {
+  display: flex;
+  padding-left: 12px;
+}
+
+.username {
+  padding-right: 6px;
+}
+
+
+.lastname {
+  padding-left: 6px;
+}
+
+/* errors */
 #errMessage {
   text-align: center;
   color: #dc143c;
@@ -460,17 +475,12 @@ header .brand-center {
     padding: 6px;
     margin: 0;
   }
-  .text-input {
-    width: 12em;
-    height: 2em;
-    margin-bottom: 4px;
-  }
+
   .btn-text {
     display: block;
   }
   .text-email {
     width: 12em;
-    height: 2em;
   }
   .btn {
     width: 10em;
@@ -536,9 +546,6 @@ header .brand-center {
   .form-group {
     padding: 10px;
     margin: 0;
-  }
-  .text-email {
-    width: 20em;
   }
   .trip-btn {
     position: relative;

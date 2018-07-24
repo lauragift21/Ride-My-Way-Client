@@ -68,7 +68,7 @@ const getRideRequest = (rideId) => {
     modal.style.display = 'none';
   };
   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = (e) =>  {
+  window.onclick = (e) => {
     if (e.target === modal) {
       modal.style.display = 'none';
     }

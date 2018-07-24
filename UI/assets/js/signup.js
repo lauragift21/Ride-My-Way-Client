@@ -1,6 +1,6 @@
 // select all input fields
 const submit = document.getElementById('submit');
-const errMessage = document.getElementById('serverErr');
+const error = document.querySelector('#errMessage');
 
 const firstName = document.getElementById('first');
 const lastName = document.getElementById('last');
@@ -35,6 +35,10 @@ const checkValidation = () => {
     locationError.innerHTML = 'Location is required';
     locate.setAttribute('style', 'border: 1px solid #cc0033;');
   }
+  if (!password.value) {
+    passwordError.innerHTML = 'Password is required';
+    password.setAttribute('style', 'border: 1px solid #cc0033;');
+  }
 };
 
 //  check if password match
@@ -49,6 +53,7 @@ const removeErrorMsg = (input, inputError) => {
   inputError.setAttribute('style', 'display: none;');
   input.setAttribute('style', 'border: 1px solid #dddddd;');
 };
+errMessage.style.display = 'none';
 
 const signup = () => {
   const url = 'https://ride-my-way-server.herokuapp.com/api/v1/auth/signup';
@@ -78,8 +83,8 @@ const signup = () => {
       }
     })
     .catch((err) => {
-      errMessage.innerHTML = err.message;
-      errMessage.setAttribute('style', 'display: block');
+      error.innerHTML = err.message;
+      error.setAttribute('style', 'display: block');
       console.log(err.message);
     });
 };
