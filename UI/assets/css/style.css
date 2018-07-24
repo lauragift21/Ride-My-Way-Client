@@ -373,6 +373,21 @@ header .brand-center {
   border-radius: 10px;
   text-align: center;
 }
+.user {
+  display: flex;
+  padding-left: 12px;
+}
+
+.username {
+  padding-right: 6px;
+}
+
+
+.lastname {
+  padding-left: 6px;
+}
+
+/* errors */
 #errMessage {
   text-align: center;
   color: #dc143c;
